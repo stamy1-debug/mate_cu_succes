@@ -8,6 +8,9 @@ export const runtime = 'nodejs';
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
 
+// Supabase/PostgREST error code constants
+const SUPABASE_ERROR_NO_ROWS = 'PGRST116';
+
 async function updateUserProfile(clerkUserId: string, updates: ProfileUpdate) {
   try {
     const { data, error } = await supabaseAdmin()
@@ -20,8 +23,8 @@ async function updateUserProfile(clerkUserId: string, updates: ProfileUpdate) {
     if (error) {
       console.error('Error updating profile:', error);
       
-      // If profile doesn't exist, try to create it
-      if (error.code === 'PGRST116') {
+      // If profile doesn't exist (PGRST116 = "No rows found"), try to create it
+      if (error.code === SUPABASE_ERROR_NO_ROWS) {
         const { data: newData, error: insertError } = await supabaseAdmin()
           .from('profiles')
           .insert({ user_id: clerkUserId, ...updates })

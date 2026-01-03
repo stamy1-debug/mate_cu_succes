@@ -88,6 +88,7 @@ export default function PricingPage() {
               <PricingCard 
                 plan={plan} 
                 onSelect={handlePlanSelect}
+                disabled={loading}
               />
             </motion.div>
           ))}

@@ -30,6 +30,7 @@ export type PlanId = keyof typeof PLAN_PRICE_IDS;
 export function getPriceIdForPlan(planId: string): string | null {
   if (planId in PLAN_PRICE_IDS) {
     const priceId = PLAN_PRICE_IDS[planId as PlanId];
+    // Return null if price ID is not configured
     return priceId || null;
   }
   return null;
