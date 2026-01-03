@@ -16,9 +16,10 @@ import { cn } from "@/lib/utils";
 interface PricingCardProps {
   plan: PricingPlan;
   onSelect?: (planId: string) => void;
+  disabled?: boolean;
 }
 
-export default function PricingCard({ plan, onSelect }: PricingCardProps) {
+export default function PricingCard({ plan, onSelect, disabled = false }: PricingCardProps) {
   return (
     <Card
       className={cn(
@@ -56,8 +57,9 @@ export default function PricingCard({ plan, onSelect }: PricingCardProps) {
           className="w-full"
           variant={plan.highlighted ? "default" : "outline"}
           onClick={() => onSelect?.(plan.id)}
+          disabled={disabled}
         >
-          Alege planul {plan.name}
+          {disabled ? 'Procesare...' : `Alege planul ${plan.name}`}
         </Button>
       </CardFooter>
     </Card>
