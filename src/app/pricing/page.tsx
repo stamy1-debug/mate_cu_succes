@@ -2,18 +2,56 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 import { motion } from "framer-motion";
 import PricingCard from "@/components/PricingCard";
 import { PRICING_PLANS } from "@/lib/plans";
 
 export default function PricingPage() {
   const router = useRouter();
+  const { isSignedIn, isLoaded } = useUser();
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handlePlanSelect = (planId: string) => {
+  const handlePlanSelect = async (planId: string) => {
     setSelectedPlan(planId);
-    // TODO: Navigate to checkout or subscription flow when implemented
-    router.push('/sign-up');
+    setError(null);
+
+    // If user is not authenticated, redirect to sign-up
+    if (!isLoaded || !isSignedIn) {
+      router.push('/sign-up');
+      return;
+    }
+
+    // If authenticated, create checkout session
+    setLoading(true);
+    try {
+      const response = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ planId }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to create checkout session');
+      }
+
+      // Redirect to Stripe Checkout
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error('No checkout URL returned');
+      }
+    } catch (err) {
+      console.error('Error creating checkout:', err);
+      setError(err instanceof Error ? err.message : 'An error occurred. Please try again.');
+      setLoading(false);
+    }
   };
 
   return (
@@ -32,6 +70,11 @@ export default function PricingPage() {
             Alege abonamentul care se potrivește cel mai bine nevoilor tale de pregătire. 
             Poți schimba sau anula abonamentul oricând.
           </p>
+          {error && (
+            <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+              {error}
+            </div>
+          )}
         </motion.div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-8">
