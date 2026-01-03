@@ -8,6 +8,7 @@ import { PRICING_PLANS } from "@/lib/plans";
 import { motion } from "framer-motion";
 import HeroAnimated from "@/components/HeroAnimated";
 import FeaturesSection from "@/components/FeaturesSection";
+import StatsSection from "@/components/StatsSection";
 
 export default function Home() {
   return (
@@ -17,6 +18,9 @@ export default function Home() {
 
       {/* Features Section */}
       <FeaturesSection />
+
+      {/* Statistics Section */}
+      <StatsSection />
 
       {/* Pricing Preview Section */}
       <section className="py-20 lg:py-32 bg-muted/50">
