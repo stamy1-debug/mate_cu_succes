@@ -51,7 +51,7 @@ export default function LessonsPage() {
             Fiecare pas include o explicație clară pentru a te ajuta să înțelegi procesul.
           </p>
           <p className="text-muted-foreground">
-            Navighează prin pașii folosind butoanele "Anterior" și "Următorul" pentru
+            Navighează prin pașii folosind butoanele &ldquo;Anterior&rdquo; și &ldquo;Următorul&rdquo; pentru
             a vedea întregul proces de rezolvare.
           </p>
         </div>
