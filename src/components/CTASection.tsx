@@ -64,8 +64,8 @@ export default function CTASection() {
   }, []);
 
   return (
-    <section className="py-20 lg:py-32 bg-pastel-noise">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-24 lg:py-40 bg-pastel-noise">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1800px' }}>
         <div className="text-center">
           <h2
             ref={headlineRef}

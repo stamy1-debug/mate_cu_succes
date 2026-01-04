@@ -81,6 +81,52 @@ Styled cards with rounded corners, subtle gradients, and noise texture.
 - Blend mode: `soft-light` for natural integration
 - Opacity: 10-12% (adjustable per component)
 
+## Figma Card Blotch Overlays
+
+### Location: `/public/figma/`
+
+Three card background blotch overlay assets are available for creating visual interest on service cards:
+
+**Files:**
+- `card-blotch-pink.png` - Pink/rose gradient blotch (~140KB)
+- `card-blotch-cyan.png` - Cyan/turquoise gradient blotch (~172KB)
+- `card-blotch-orange.png` - Orange/warm gradient blotch (~165KB)
+
+**Specifications:**
+- Format: PNG with alpha transparency
+- Dimensions: Variable (optimized for top-right card placement)
+- Purpose: Decorative overlays for service/feature cards
+
+**Usage Example:**
+```jsx
+<div className="relative overflow-hidden" style={{ borderRadius: '40px' }}>
+  {/* Blotch overlay */}
+  <div className="absolute top-0 right-0 pointer-events-none" style={{ zIndex: 1 }}>
+    <Image
+      src="/figma/card-blotch-pink.png"
+      alt=""
+      width={200}
+      height={200}
+      className="opacity-90"
+      style={{ mixBlendMode: 'multiply' }}
+    />
+  </div>
+  
+  {/* Card content */}
+  <div className="relative p-8" style={{ zIndex: 2 }}>
+    {/* Your content here */}
+  </div>
+</div>
+```
+
+**Best Practices:**
+- Position absolutely in the top-right corner of cards
+- Use `pointer-events: none` to prevent interaction interference
+- Apply `mixBlendMode: 'multiply'` for natural color blending
+- Set appropriate z-index layers (overlay: 1, content: 2)
+- Adjust opacity (0.8-0.9) for desired visual impact
+- Rotate between the three colors for visual variety in grid layouts
+
 ## Color Palette
 
 The design system uses soft pastel gradients derived from:

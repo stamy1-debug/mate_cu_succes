@@ -49,9 +49,9 @@ export default function DarkFeaturesSection() {
   const testimonialsRef = useScrollReveal({ stagger: 0.2 });
 
   return (
-    <section className="py-20 lg:py-32 bg-slate-900">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+    <section className="py-24 lg:py-40 bg-slate-900">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1800px' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
           {/* Left: Headline */}
           <div className="flex flex-col justify-center">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl leading-tight">
@@ -85,7 +85,7 @@ export default function DarkFeaturesSection() {
         {/* Testimonials */}
         <div
           ref={testimonialsRef as React.RefObject<HTMLDivElement>}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20"
         >
           {testimonials.map((testimonial) => (
             <div
