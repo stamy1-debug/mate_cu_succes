@@ -75,29 +75,22 @@ export default function ServicesSection() {
               }}
             >
               {/* Blotch overlay */}
-              <div className="absolute top-0 right-0 pointer-events-none" style={{ zIndex: 1 }}>
+              <div className="absolute top-0 right-0 pointer-events-none z-10">
                 <Image
                   src={service.blotch}
                   alt=""
                   width={180}
                   height={180}
                   className="opacity-90"
-                  style={{ mixBlendMode: 'multiply' }}
+                  style={{ mixBlendMode: 'multiply', objectFit: 'contain' }}
                 />
               </div>
 
               {/* Content */}
-              <div className="relative p-8 h-full flex flex-col" style={{ zIndex: 2 }}>
+              <div className="relative p-8 h-full flex flex-col z-20">
                 <div className="flex items-start gap-4 flex-1">
                   <div className="flex-shrink-0">
-                    <div 
-                      className="flex items-center justify-center bg-black"
-                      style={{
-                        width: '48px',
-                        height: '48px',
-                        borderRadius: '50%',
-                      }}
-                    >
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-black">
                       <service.icon className="w-6 h-6 text-white" />
                     </div>
                   </div>
