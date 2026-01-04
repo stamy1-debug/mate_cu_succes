@@ -6,7 +6,7 @@ import { CheckCircle2, Star } from 'lucide-react';
 const features = [
   {
     title: 'Conținut actualizat',
-    description: 'Materiale alinate cu programa școlară în vigoare și cerințele MECS',
+    description: 'Materiale aliniate cu programa școlară în vigoare și cerințele MECS',
   },
   {
     title: 'Explicații clare',
@@ -28,16 +28,21 @@ const testimonials = [
     role: 'Elevă clasa a VIII-a',
     content: 'Am crescut nota de la 7 la 9.5 în doar 3 luni! Explicațiile sunt super clare și exercițiile m-au ajutat enorm.',
     rating: 5,
-    color: 'yellow',
+    color: 'yellow' as const,
   },
   {
     name: 'Andrei M.',
     role: 'Absolvent EN 2023',
     content: 'Cea mai bună investiție! Am luat 10 la EN datorită platformei și profesorilor dedicați.',
     rating: 5,
-    color: 'cyan',
+    color: 'cyan' as const,
   },
 ];
+
+const colorStyles = {
+  yellow: 'bg-yellow-400/95 border-yellow-500/30',
+  cyan: 'bg-cyan-400/95 border-cyan-500/30',
+} as const;
 
 export default function DarkFeaturesSection() {
   const featuresRef = useScrollReveal({ stagger: 0.12 });
@@ -62,9 +67,9 @@ export default function DarkFeaturesSection() {
             ref={featuresRef as React.RefObject<HTMLDivElement>}
             className="flex flex-col gap-4"
           >
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <div
-                key={index}
+                key={feature.title}
                 className="flex items-start gap-4 p-6 rounded-3xl bg-slate-800/50 border border-slate-700/50"
               >
                 <CheckCircle2 className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" />
@@ -82,14 +87,10 @@ export default function DarkFeaturesSection() {
           ref={testimonialsRef as React.RefObject<HTMLDivElement>}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16"
         >
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
             <div
-              key={index}
-              className={`p-8 rounded-[40px] border ${
-                testimonial.color === 'yellow'
-                  ? 'bg-yellow-400/95 border-yellow-500/30'
-                  : 'bg-cyan-400/95 border-cyan-500/30'
-              }`}
+              key={testimonial.name}
+              className={`p-8 rounded-[40px] border ${colorStyles[testimonial.color]}`}
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (

@@ -55,8 +55,8 @@ export default function ServicesSection() {
           ref={containerRef as React.RefObject<HTMLDivElement>}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
-          {services.map((service, index) => (
-            <div key={index} className="card-pastel p-8">
+          {services.map((service) => (
+            <div key={service.title} className="card-pastel p-8">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
