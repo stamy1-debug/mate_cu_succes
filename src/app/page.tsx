@@ -12,7 +12,7 @@ import StatsSection from "@/components/StatsSection";
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-pastel-noise">
       {/* Hero Section */}
       <HeroAnimated />
 

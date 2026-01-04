@@ -23,7 +23,7 @@ export default function PricingCard({ plan, onSelect, disabled = false }: Pricin
   return (
     <Card
       className={cn(
-        "relative flex flex-col",
+        "relative flex flex-col card-pastel",
         plan.highlighted && "border-primary shadow-lg scale-105"
       )}
     >
