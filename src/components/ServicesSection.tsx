@@ -1,107 +1,64 @@
-'use client';
-
-import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { BookOpen, Video, FileText, Users, Target, Award } from 'lucide-react';
-import Image from 'next/image';
+import Image from "next/image";
 
 const services = [
   {
-    icon: BookOpen,
-    title: 'Lecții Interactive',
-    description: 'Conținut educațional structurat și ușor de înțeles pentru toate nivelurile',
-    blotch: '/figma/card-blotch-pink.png',
+    title: "Mentorat 1:1",
+    description:
+      "Plan personalizat, obiective clare și feedback constant pentru progres accelerat.",
   },
   {
-    icon: Video,
-    title: 'Video Tutoriale',
-    description: 'Ore de materiale video explicative pentru fiecare subiect din programa școlară',
-    blotch: '/figma/card-blotch-cyan.png',
+    title: "Evaluare & Strategie",
+    description:
+      "Analizăm situația ta actuală și construim un plan concret de creștere.",
   },
   {
-    icon: FileText,
-    title: 'Exerciții Practice',
-    description: 'Mii de exerciții și probleme rezolvate pas cu pas pentru exersare',
-    blotch: '/figma/card-blotch-orange.png',
+    title: "Workshop-uri",
+    description:
+      "Sesiuni practice pe teme cheie: mindset, productivitate, carieră și finanțe.",
   },
   {
-    icon: Users,
-    title: 'Suport Dedicat',
-    description: 'Profesori experimentați disponibili să răspundă întrebărilor tale',
-    blotch: '/figma/card-blotch-pink.png',
-  },
-  {
-    icon: Target,
-    title: 'Progres Urmărit',
-    description: 'Monitorizează-ți evoluția și identifică zonele care necesită îmbunătățire',
-    blotch: '/figma/card-blotch-cyan.png',
-  },
-  {
-    icon: Award,
-    title: 'Rezultate Garantate',
-    description: 'Metodologie dovedită care a ajutat sute de elevi să reușească la examen',
-    blotch: '/figma/card-blotch-orange.png',
+    title: "Resurse",
+    description:
+      "Ghiduri, template-uri și instrumente testate pentru rezultate rapide.",
   },
 ];
 
 export default function ServicesSection() {
-  const containerRef = useScrollReveal({ stagger: 0.15 });
-
   return (
-    <section className="py-20 lg:py-32 bg-pastel-noise">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1800px' }}>
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Totul de care ai nevoie pentru succes
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Platformă completă de pregătire pentru Evaluarea Națională la matematică
-          </p>
-        </div>
+    <section className="py-16 lg:py-20">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          Servicii
+        </h2>
+        <p className="mt-4 max-w-2xl text-muted-foreground">
+          Alege formatul potrivit și pornește pe drumul către rezultate măsurabile.
+        </p>
 
-        <div
-          ref={containerRef as React.RefObject<HTMLDivElement>}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
-        >
-          {services.map((service) => (
-            <div 
-              key={service.title} 
-              className="relative overflow-hidden bg-white w-full"
-              style={{
-                maxWidth: '490px',
-                height: '413px',
-                borderRadius: '40px',
-                border: '1.5px solid #000000',
-                boxShadow: '0 4px 4px rgba(0, 0, 0, 0.25)',
-              }}
-            >
-              {/* Blotch overlay */}
-              <div className="absolute top-0 right-0 pointer-events-none z-10">
-                <Image
-                  src={service.blotch}
-                  alt=""
-                  width={180}
-                  height={180}
-                  className="opacity-90"
-                  style={{ mixBlendMode: 'multiply', objectFit: 'contain' }}
-                />
-              </div>
+        <div className="mt-12 relative overflow-hidden rounded-[48px] py-16 lg:py-20">
+          <Image
+            src="/figma/background1.png"
+            alt=""
+            fill
+            className="object-cover opacity-50"
+            priority={false}
+          />
+          <div className="absolute inset-0 bg-white/30" />
 
-              {/* Content */}
-              <div className="relative p-8 h-full flex flex-col z-20">
-                <div className="flex items-start gap-4 flex-1">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-black">
-                      <service.icon className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                  </div>
+          <div className="relative z-10 px-4">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {services.map((service) => (
+                <div
+                  key={service.title}
+                  className="rounded-2xl bg-white/80 p-6 shadow-sm backdrop-blur"
+                >
+                  <h3 className="text-lg font-semibold">{service.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {service.description}
+                  </p>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
