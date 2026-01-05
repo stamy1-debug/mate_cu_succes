@@ -36,7 +36,7 @@ export default function FeatureCardAnimated({
   return (
     <div
       ref={elementRef}
-      className="flex flex-col items-center text-center p-6 card-pastel"
+      className="flex flex-col items-center text-center p-6 rounded-lg bg-card border"
     >
       <div className="rounded-full bg-primary/10 p-4 mb-4">
         {icon}
