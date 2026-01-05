@@ -1,89 +1,41 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight } from 'lucide-react';
+import Image from "next/image";
 
 export default function CTASection() {
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const headline = headlineRef.current;
-    const button = buttonRef.current;
-
-    if (!headline || !button) return;
-
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) {
-      gsap.set([headline, button], { opacity: 1, y: 0 });
-      return;
-    }
-
-    // Check if mobile
-    const isMobile = window.innerWidth < 768;
-    const duration = isMobile ? 0.42 : 0.6;
-
-    // Initial state
-    gsap.set([headline, button], { opacity: 0, y: 30 });
-
-    // Animation
-    const trigger = ScrollTrigger.create({
-      trigger: headline,
-      start: 'top 80%',
-      onEnter: () => {
-        gsap.to(headline, {
-          opacity: 1,
-          y: 0,
-          duration: duration,
-          ease: 'power2.out',
-        });
-        gsap.to(button, {
-          opacity: 1,
-          y: 0,
-          duration: duration,
-          delay: 0.15,
-          ease: 'power2.out',
-        });
-      },
-      once: true,
-    });
-
-    return () => {
-      trigger.kill();
-    };
-  }, []);
-
   return (
-    <section className="py-24 lg:py-40 bg-pastel-noise">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1800px' }}>
-        <div className="text-center">
-          <h2
-            ref={headlineRef}
-            className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl max-w-4xl mx-auto leading-tight"
-          >
-            Pregătește-te pentru nota pe care ți-o dorești
-          </h2>
-          <div ref={buttonRef} className="mt-10 flex items-center justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="rounded-full px-8 py-6 text-lg h-auto shadow-lg hover:shadow-xl transition-shadow"
+    <section className="relative overflow-hidden py-16">
+      {/* Background (matches ServicesSection approach) */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <Image
+          src="/figma/background2.png"
+          alt=""
+          fill
+          priority
+          className="object-cover opacity-50"
+        />
+        <div className="absolute inset-0 bg-white/30" />
+      </div>
+
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="rounded-3xl bg-white/70 p-8 shadow-sm ring-1 ring-black/5 backdrop-blur md:p-12">
+          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 md:text-3xl">
+                Vrei să-ți iei examenul din prima?
+              </h2>
+              <p className="mt-2 max-w-2xl text-base text-zinc-700">
+                Începe cu lecții clare, practică ghidată și suport real — ca să conduci cu
+                încredere.
+              </p>
+            </div>
+
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-900/20"
             >
-              <Link href="/sign-up">
-                Începe acum gratuit
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+              Programează o ședință
+            </a>
           </div>
         </div>
       </div>
