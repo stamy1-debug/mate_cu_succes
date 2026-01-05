@@ -99,66 +99,21 @@ mate_cu_succes/
    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
    ```
 
-   **NOTE**: Pentru a face build, trebuie să setezi o cheie Clerk validă în `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, altfel build-ul va eșua. Acest lucru este necesar deoarece paginile folosesc autentificarea Clerk.
-
    **Supabase** (obține de la [Supabase Dashboard](https://app.supabase.com)):
    ```env
    NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-   ```
-
-   **Stripe** (obține de la [Stripe Dashboard](https://dashboard.stripe.com)):
-   ```env
-   STRIPE_SECRET_KEY=sk_test_...
-   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-   STRIPE_PRICE_ID_STARTER=price_...
-   STRIPE_PRICE_ID_PRO=price_...
-   STRIPE_PRICE_ID_ELITE=price_...
-   STRIPE_WEBHOOK_SECRET=whsec_...
-   NEXT_PUBLIC_APP_URL=http://localhost:3000
    ```
 
 4. **Configurează baza de date Supabase**
    
-   Rulează SQL-ul din `supabase/schema.sql` și `supabase/migrations/001_add_subscription_fields.sql` în Supabase SQL Editor pentru a crea tabelul `profiles` și a adăuga câmpurile de abonament:
+   Rulează SQL-ul din `supabase/schema.sql` în Supabase SQL Editor pentru a crea tabelul `profiles`:
    ```bash
    # Sau folosește Supabase CLI
    supabase db push
    ```
 
-5. **Configurează Stripe pentru abonamente**
-
-   a. Creează produse și prețuri în [Stripe Dashboard](https://dashboard.stripe.com/test/products):
-   - Produs: "Mate cu Succes - Starter" → creează preț recurent lunar
-   - Produs: "Mate cu Succes - Pro" → creează preț recurent lunar
-   - Produs: "Mate cu Succes - Elite" → creează preț recurent lunar
-   
-   b. Copiază ID-urile prețurilor (încep cu `price_`) în variabilele de mediu:
-   - `STRIPE_PRICE_ID_STARTER`
-   - `STRIPE_PRICE_ID_PRO`
-   - `STRIPE_PRICE_ID_ELITE`
-
-   c. Configurează webhook-ul Stripe:
-   
-   **Pentru development local (folosind Stripe CLI)**:
-   ```bash
-   # Instalează Stripe CLI: https://stripe.com/docs/stripe-cli
-   stripe login
-   stripe listen --forward-to localhost:3000/api/stripe/webhook
-   # Copiază webhook secret-ul (whsec_...) în STRIPE_WEBHOOK_SECRET
-   ```
-
-   **Pentru producție (Vercel)**:
-   - Mergi la Stripe Dashboard → Developers → Webhooks
-   - Adaugă endpoint: `https://your-domain.com/api/stripe/webhook`
-   - Selectează evenimente:
-     - `checkout.session.completed`
-     - `customer.subscription.updated`
-     - `customer.subscription.deleted`
-   - Copiază webhook secret-ul în variabila `STRIPE_WEBHOOK_SECRET` din Vercel
-
-6. **Rulează aplicația în modul development**
+5. **Rulează aplicația în modul development**
    ```bash
    npm run dev
    ```
@@ -187,16 +142,6 @@ Vercel detectează automat Next.js. Nu sunt necesare configurări suplimentare.
 - `NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL`
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY`
-- `STRIPE_SECRET_KEY`
-- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
-- `STRIPE_PRICE_ID_STARTER`
-- `STRIPE_PRICE_ID_PRO`
-- `STRIPE_PRICE_ID_ELITE`
-- `STRIPE_WEBHOOK_SECRET`
-- `NEXT_PUBLIC_APP_URL` (URL-ul aplicației tale, ex: `https://your-domain.vercel.app`)
-
-**IMPORTANT**: După deploy pe Vercel, nu uita să configurezi webhook-ul Stripe pentru producție (vezi pasul 5c din secțiunea Instalare).
 
 ## 📄 Pagini și Rute
 
@@ -209,8 +154,6 @@ Vercel detectează automat Next.js. Nu sunt necesare configurări suplimentare.
 | `/contul-meu` | Profil utilizator și gestionare abonament | ✅ |
 | `/sign-in` | Autentificare (Clerk) | ❌ |
 | `/sign-up` | Înregistrare (Clerk) | ❌ |
-| `/api/stripe/checkout` | Creare sesiune Stripe Checkout | ✅ (API) |
-| `/api/stripe/webhook` | Webhook pentru evenimente Stripe | ❌ (verificat prin semnătură) |
 
 ## 💳 Planuri de Abonament
 
@@ -290,7 +233,7 @@ Aplicația este optimizată pentru:
 
 ## 🔮 Viitoare Funcționalități
 
-- [x] Integrare completă plăți (Stripe)
+- [ ] Integrare completă plăți (Stripe)
 - [ ] Upload și management materiale PDF
 - [ ] Sistem de notificări
 - [ ] Dashboard analitică progres

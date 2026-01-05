@@ -16,14 +16,13 @@ import { cn } from "@/lib/utils";
 interface PricingCardProps {
   plan: PricingPlan;
   onSelect?: (planId: string) => void;
-  disabled?: boolean;
 }
 
-export default function PricingCard({ plan, onSelect, disabled = false }: PricingCardProps) {
+export default function PricingCard({ plan, onSelect }: PricingCardProps) {
   return (
     <Card
       className={cn(
-        "relative flex flex-col card-pastel",
+        "relative flex flex-col",
         plan.highlighted && "border-primary shadow-lg scale-105"
       )}
     >
@@ -57,9 +56,8 @@ export default function PricingCard({ plan, onSelect, disabled = false }: Pricin
           className="w-full"
           variant={plan.highlighted ? "default" : "outline"}
           onClick={() => onSelect?.(plan.id)}
-          disabled={disabled}
         >
-          {disabled ? 'Procesare...' : `Alege planul ${plan.name}`}
+          Alege planul {plan.name}
         </Button>
       </CardFooter>
     </Card>
