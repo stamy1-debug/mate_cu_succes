@@ -1,75 +1,73 @@
-import React from "react";
-import background1 from "../../assets/background1.png";
+'use client';
+
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { BookOpen, Video, FileText, Users, Target, Award } from 'lucide-react';
 
 const services = [
   {
-    title: "Pagini Web Personalizate",
-    description:
-      "Creăm site-uri moderne, rapide și adaptate nevoilor tale, pentru a-ți reprezenta afacerea la cel mai înalt nivel.",
+    icon: BookOpen,
+    title: 'Lecții Interactive',
+    description: 'Conținut educațional structurat și ușor de înțeles pentru toate nivelurile',
   },
   {
-    title: "Magazine Online (eCommerce)",
-    description:
-      "Construim platforme de vânzare online sigure și ușor de administrat, pentru a-ți crește vânzările și vizibilitatea.",
+    icon: Video,
+    title: 'Video Tutoriale',
+    description: 'Ore de materiale video explicative pentru fiecare subiect din programa școlară',
   },
   {
-    title: "Optimizare SEO",
-    description:
-      "Îmbunătățim poziționarea site-ului tău în motoarele de căutare, astfel încât clienții să te găsească mai ușor.",
+    icon: FileText,
+    title: 'Exerciții Practice',
+    description: 'Mii de exerciții și probleme rezolvate pas cu pas pentru exersare',
   },
   {
-    title: "Mentoranță în Afaceri",
-    description:
-      "Te ghidăm strategic pentru a-ți dezvolta afacerea, cu soluții practice și planuri clare de creștere.",
+    icon: Users,
+    title: 'Suport Dedicat',
+    description: 'Profesori experimentați disponibili să răspundă întrebărilor tale',
   },
   {
-    title: "Consultanță Digitală",
-    description:
-      "Îți oferim recomandări și strategii digitale pentru a-ți optimiza prezența online și a-ți atinge obiectivele.",
+    icon: Target,
+    title: 'Progres Urmărit',
+    description: 'Monitorizează-ți evoluția și identifică zonele care necesită îmbunătățire',
   },
   {
-    title: "Suport și Mentenanță",
-    description:
-      "Asigurăm suport continuu și mentenanță, astfel încât site-ul tău să rămână mereu actualizat și funcțional.",
+    icon: Award,
+    title: 'Rezultate Garantate',
+    description: 'Metodologie dovedită care a ajutat sute de elevi să reușească la examen',
   },
 ];
 
 export default function ServicesSection() {
-  return (
-    <section id="services" className="relative w-full">
-      {/* Background image full-width with opacity */}
-      <div className="absolute inset-0 -z-10">
-        <img
-          src={background1}
-          alt="" 
-          className="h-full w-full object-cover opacity-50"
-        />
-        {/* White overlay */}
-        <div className="absolute inset-0 bg-white/30" />
-      </div>
+  const containerRef = useScrollReveal({ stagger: 0.15 });
 
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Serviciile Noastre
+  return (
+    <section className="py-20 lg:py-32 bg-pastel-noise">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            Totul de care ai nevoie pentru succes
           </h2>
-          <p className="mt-3 text-base text-gray-700 sm:text-lg">
-            Soluții complete pentru prezența ta online și creșterea afacerii.
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+            Platformă completă de pregătire pentru Evaluarea Națională la matematică
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          ref={containerRef as React.RefObject<HTMLDivElement>}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
           {services.map((service) => (
-            <div
-              key={service.title}
-              className="rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur"
-            >
-              <h3 className="text-lg font-semibold text-gray-900">
-                {service.title}
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-gray-700">
-                {service.description}
-              </p>
+            <div key={service.title} className="card-pastel p-8">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <service.icon className="w-6 h-6 text-primary" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+                  <p className="text-muted-foreground">{service.description}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>

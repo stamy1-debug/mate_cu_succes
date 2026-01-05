@@ -7,9 +7,9 @@ import CTASection from "@/components/CTASection";
 
 export default function Home() {
   return (
-    <div className="flex flex-col bg-pastel-noise">
-      {/* Hero Section */}
-      <HeroAnimated />
+    <div className="flex flex-col">
+      {/* Services Grid Section */}
+      <ServicesSection />
 
       {/* Dark Feature Section with Testimonials */}
       <DarkFeaturesSection />
