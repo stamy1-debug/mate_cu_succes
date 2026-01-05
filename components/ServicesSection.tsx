@@ -1,56 +1,70 @@
-// NOTE: updated by assistant to apply section-wide background/overlay and remove duplicate layer
+import Image from "next/image";
 
-import React from "react";
+const services = [
+  {
+    title: "Mentorat 1:1",
+    description:
+      "Plan personalizat, obiective clare și feedback constant pentru progres accelerat.",
+  },
+  {
+    title: "Evaluare & Strategie",
+    description:
+      "Analizăm situația ta actuală și construim un plan concret de creștere.",
+  },
+  {
+    title: "Workshop-uri",
+    description:
+      "Sesiuni practice pe teme cheie: mindset, productivitate, carieră și finanțe.",
+  },
+  {
+    title: "Resurse",
+    description:
+      "Ghiduri, template-uri și instrumente testate pentru rezultate rapide.",
+  },
+];
 
-const ServicesSection = () => {
+export default function ServicesSection() {
   return (
-    <section className="relative overflow-hidden">
-      {/* Background for the entire section under the header */}
-      <div className="absolute inset-0 -z-10">
-        <div
-          className="absolute inset-0 bg-[url('/background1.png')] bg-cover bg-center opacity-50"
-          aria-hidden="true"
+    <section className="relative overflow-hidden py-16 lg:py-20">
+      {/* background1 pe toată secțiunea (sub navbar) */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <Image
+          src="/figma/background1.png"
+          alt=""
+          fill
+          className="object-cover opacity-50"
+          priority={false}
         />
-        <div className="absolute inset-0 bg-white/30" aria-hidden="true" />
+        <div className="absolute inset-0 bg-white/30" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="mb-10">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Serviciile noastre
-          </h2>
-          <p className="mt-3 max-w-2xl text-base text-gray-700">
-            Descoperă cum te putem ajuta să îți atingi obiectivele.
-          </p>
-        </div>
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          Servicii
+        </h2>
+        <p className="mt-4 max-w-2xl text-muted-foreground">
+          Alege formatul potrivit și pornește pe drumul către rezultate măsurabile.
+        </p>
 
-        {/* Grid wrapper WITHOUT additional/duplicate background layer */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Cards (kept as-is; adjust content/components to match your existing implementation) */}
-          <div className="rounded-2xl bg-white/70 backdrop-blur p-6 shadow-sm ring-1 ring-black/5">
-            <h3 className="text-lg font-semibold text-gray-900">Meditații</h3>
-            <p className="mt-2 text-sm text-gray-700">
-              Lecții personalizate pentru gimnaziu și liceu.
-            </p>
-          </div>
-
-          <div className="rounded-2xl bg-white/70 backdrop-blur p-6 shadow-sm ring-1 ring-black/5">
-            <h3 className="text-lg font-semibold text-gray-900">Pregătire examene</h3>
-            <p className="mt-2 text-sm text-gray-700">
-              Bacalaureat, Evaluare Națională și admitere.
-            </p>
-          </div>
-
-          <div className="rounded-2xl bg-white/70 backdrop-blur p-6 shadow-sm ring-1 ring-black/5">
-            <h3 className="text-lg font-semibold text-gray-900">Plan de învățare</h3>
-            <p className="mt-2 text-sm text-gray-700">
-              Structură, exerciții și feedback constant.
-            </p>
+        {/* wrapper-ul gridului fără background duplicat */}
+        <div className="mt-12 rounded-[48px] py-16 lg:py-20">
+          <div className="relative z-10 px-4">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {services.map((service) => (
+                <div
+                  key={service.title}
+                  className="rounded-2xl bg-white/80 p-6 shadow-sm backdrop-blur"
+                >
+                  <h3 className="text-lg font-semibold">{service.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default ServicesSection;
+}
