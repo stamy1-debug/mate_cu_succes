@@ -15,7 +15,7 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'starter',
     name: 'Starter',
-    price: 79,
+    price: 350,
     currency: 'RON',
     interval: 'lună',
     description: 'Perfect pentru începători care vor să înceapă pregătirea',
@@ -30,7 +30,7 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'pro',
     name: 'Pro',
-    price: 149,
+    price: 530,
     currency: 'RON',
     interval: 'lună',
     description: 'Cel mai popular - ideal pentru pregătire completă',
@@ -48,7 +48,7 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'elite',
     name: 'Elite',
-    price: 299,
+    price: 584,
     currency: 'RON',
     interval: 'lună',
     description: 'Pregătire premium cu mentorship individual',
