@@ -60,25 +60,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-2xl bg-primary px-6 py-16 text-center shadow-lg sm:px-12 lg:px-16">
-            <h2 className="text-3xl font-bold tracking-tight text-primary-foreground font-serif sm:text-4xl">
-              Începe-ți pregătirea astăzi
-            </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-primary-foreground/90">
-              Alătură-te sute de elevi care și-au îmbunătățit rezultatele cu Mate cu Succes
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-4">
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/sign-up">
-                  Creează cont gratuit
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTASection />
     </div>
   );
 }

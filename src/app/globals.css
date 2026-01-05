@@ -29,6 +29,10 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    
+    /* Design system */
+    --noise-texture: url('/noise.png');
+    --font-primary: 'Satoshi', 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   .dark {
@@ -65,5 +69,66 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-primary);
+  }
+}
+
+@layer utilities {
+  /* Pastel gradient background with noise overlay */
+  .bg-pastel-noise {
+    position: relative;
+    background: 
+      radial-gradient(ellipse 80% 50% at 50% 120%, rgba(120, 119, 198, 0.15), transparent),
+      radial-gradient(ellipse 60% 60% at 80% 30%, rgba(253, 186, 186, 0.15), transparent),
+      radial-gradient(ellipse 70% 50% at 20% 40%, rgba(186, 230, 253, 0.15), transparent),
+      #ffffff;
+  }
+  
+  .bg-pastel-noise::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--noise-texture);
+    background-repeat: repeat;
+    opacity: 0.12;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+  }
+
+  /* Pastel card with rounded corners and noise overlay */
+  .card-pastel {
+    position: relative;
+    border-radius: 40px;
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(251, 207, 232, 0.12), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(196, 181, 253, 0.12), transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.9), transparent),
+      #ffffff;
+    overflow: hidden;
+  }
+  
+  .card-pastel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--noise-texture);
+    background-repeat: repeat;
+    opacity: 0.1;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .card-pastel > * {
+    position: relative;
+    z-index: 1;
   }
 }
