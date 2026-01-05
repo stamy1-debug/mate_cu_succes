@@ -1,64 +1,69 @@
-import Image from "next/image";
+import background1 from '../assets/background1.png';
 
 const services = [
   {
-    title: "Mentorat 1:1",
+    title: 'Tutoring personalizat',
     description:
-      "Plan personalizat, obiective clare și feedback constant pentru progres accelerat.",
+      'Învățare adaptată ritmului și nevoilor copilului, cu atenție maximă pe progres.',
   },
   {
-    title: "Evaluare & Strategie",
+    title: 'Metode interactive',
     description:
-      "Analizăm situația ta actuală și construim un plan concret de creștere.",
+      'Folosim jocuri, exerciții practice și tehnici moderne pentru a face învățarea plăcută.',
   },
   {
-    title: "Workshop-uri",
+    title: 'Pregătire pentru examene',
     description:
-      "Sesiuni practice pe teme cheie: mindset, productivitate, carieră și finanțe.",
+      'Sprijin complet pentru testări naționale, evaluări și examene importante.',
   },
   {
-    title: "Resurse",
+    title: 'Dezvoltare abilități',
     description:
-      "Ghiduri, template-uri și instrumente testate pentru rezultate rapide.",
+      'Construim încrederea, gândirea critică și autonomia în procesul de învățare.',
   },
 ];
 
 export default function ServicesSection() {
   return (
-    <section className="py-16 lg:py-20">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-          Servicii
-        </h2>
-        <p className="mt-4 max-w-2xl text-muted-foreground">
-          Alege formatul potrivit și pornește pe drumul către rezultate măsurabile.
-        </p>
+    <section
+      id="services"
+      className="relative bg-transparent py-24 sm:py-32"
+    >
+      {/* Background spanning entire section */}
+      <div className="absolute inset-0 -z-10">
+        <img
+          src={background1}
+          alt=""
+          className="h-full w-full object-cover opacity-50"
+        />
+        <div className="absolute inset-0 bg-white/30" />
+      </div>
 
-        <div className="mt-12 relative overflow-hidden rounded-[48px] py-16 lg:py-20">
-          <Image
-            src="/figma/background1.png"
-            alt=""
-            fill
-            className="object-cover opacity-50"
-            priority={false}
-          />
-          <div className="absolute inset-0 bg-white/30" />
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:mx-0">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Serviciile noastre
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-gray-600">
+            Oferim suport educațional complet pentru copilul tău, într-un mediu prietenos și
+            motivant.
+          </p>
+        </div>
 
-          <div className="relative z-10 px-4">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {services.map((service) => (
-                <div
-                  key={service.title}
-                  className="rounded-2xl bg-white/80 p-6 shadow-sm backdrop-blur"
-                >
-                  <h3 className="text-lg font-semibold">{service.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {service.description}
-                  </p>
-                </div>
-              ))}
+        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          {services.map((service) => (
+            <div
+              key={service.title}
+              className="rounded-2xl bg-white/80 p-8 shadow-sm ring-1 ring-gray-900/5"
+            >
+              <h3 className="text-lg font-semibold leading-7 text-gray-900">
+                {service.title}
+              </h3>
+              <p className="mt-2 text-base leading-7 text-gray-600">
+                {service.description}
+              </p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
